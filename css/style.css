@@ -301,9 +301,10 @@ img {
 
 .about-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr;
     gap: 60px;
     align-items: center;
+    text-align: center;
 }
 
 .about-content h3 {
@@ -342,7 +343,7 @@ img {
 
 .about-logo {
     max-width: 200px;
-    margin: 0 auto;
+    margin: 0 auto 40px;
     display: block;
 }
 
