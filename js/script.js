@@ -59,35 +59,35 @@ if (contactForm) {
     console.error('❌ Contact form NOT found!');
 }
 
-contactForm?.addEventListener('submit', function(e) {
+contactForm?.addEventListener('submit', function (e) {
     e.preventDefault();
     console.log('📧 Form submission started...');
-    
+
     // Get form data
     const name = this.querySelector('input[type="text"]').value;
     const email = this.querySelector('input[type="email"]').value;
     const phone = this.querySelector('input[type="tel"]').value;
     const service = this.querySelector('select').value;
     const message = this.querySelector('textarea').value;
-    
+
     // Simple validation
     if (!name || !email || !message) {
         showNotification('Please fill in all required fields.', 'error');
         return;
     }
-    
+
     if (!isValidEmail(email)) {
         showNotification('Please enter a valid email address.', 'error');
         return;
     }
-    
+
     // Prepare form submission
     const submitButton = this.querySelector('.btn-primary');
     const originalText = submitButton.textContent;
-    
+
     submitButton.textContent = 'Sending...';
     submitButton.disabled = true;
-    
+
     // EmailJS parameters
     const templateParams = {
         from_name: name,
@@ -96,7 +96,7 @@ contactForm?.addEventListener('submit', function(e) {
         service_interest: service,
         message: message
     };
-    
+
     // Send email using EmailJS
     console.log('📤 Sending email with params:', templateParams);
     emailjs.send('service_jpgg8a6', 'template_roubhwk', templateParams)
@@ -132,12 +132,12 @@ function showNotification(message, type = 'success') {
     if (existingNotification) {
         existingNotification.remove();
     }
-    
+
     // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.textContent = message;
-    
+
     // Add styles
     Object.assign(notification.style, {
         position: 'fixed',
@@ -153,14 +153,14 @@ function showNotification(message, type = 'success') {
         backgroundColor: type === 'success' ? '#10B981' : '#EF4444',
         boxShadow: '0 10px 30px rgba(0, 0, 0, 0.15)'
     });
-    
+
     document.body.appendChild(notification);
-    
+
     // Animate in
     setTimeout(() => {
         notification.style.transform = 'translateX(0)';
     }, 100);
-    
+
     // Remove after 5 seconds
     setTimeout(() => {
         notification.style.transform = 'translateX(100%)';
@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const animateElements = document.querySelectorAll(
         '.service-card, .mentor-card, .testimonial-card, .stat-item'
     );
-    
+
     animateElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
@@ -221,7 +221,7 @@ const counterObserver = new IntersectionObserver((entries) => {
             const text = element.textContent;
             const number = parseInt(text.replace(/[^0-9]/g, ''));
             const suffix = text.replace(/[0-9]/g, '');
-            
+
             if (number) {
                 animateCounter(element, number, suffix);
                 counterObserver.unobserve(element);
@@ -267,10 +267,10 @@ document.addEventListener('DOMContentLoaded', () => {
             hamburger.click();
         }
     });
-    
+
     // Add focus trap for mobile menu
     const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
-    
+
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && navMenu?.classList.contains('active')) {
             hamburger?.classList.remove('active');
@@ -284,7 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Throttle scroll events
 function throttle(func, limit) {
     let inThrottle;
-    return function() {
+    return function () {
         const args = arguments;
         const context = this;
         if (!inThrottle) {
@@ -311,19 +311,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add smooth entrance animation to hero content
     const heroContent = document.querySelector('.hero-content');
     const heroImage = document.querySelector('.hero-image');
-    
+
     if (heroContent && heroImage) {
         heroContent.style.opacity = '0';
         heroContent.style.transform = 'translateY(30px)';
         heroImage.style.opacity = '0';
         heroImage.style.transform = 'translateY(30px)';
-        
+
         setTimeout(() => {
             heroContent.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
             heroImage.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
             heroContent.style.opacity = '1';
             heroContent.style.transform = 'translateY(0)';
-            
+
             setTimeout(() => {
                 heroImage.style.opacity = '1';
                 heroImage.style.transform = 'translateY(0)';
@@ -332,4 +332,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-console.log('🌟 Ace Transitions  website loaded successfully!');
+console.log('🌟 ACE Transitions  website loaded successfully!');

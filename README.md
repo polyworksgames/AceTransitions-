@@ -1,6 +1,6 @@
-# TLCWeb - Ace Transitions  Website
+# TLCWeb - ACE Transitions  Website
 
-Peer Mentoring agency website built for Ace Transitions .
+Peer Mentoring agency website built for ACE Transitions .
 
 ## Features
 
@@ -44,7 +44,7 @@ TLCWeb/
 
 ## Contact
 
-For questions about this website, contact Ace Transitions :
+For questions about this website, contact ACE Transitions :
 - Phone: 
 - Email: info@acetransitions.org
 
