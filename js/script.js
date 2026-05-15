@@ -332,4 +332,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-console.log('🌟 Transitions Legacy Center website loaded successfully!');
+console.log('🌟 Ace Transitions  website loaded successfully!');

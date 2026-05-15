@@ -1,6 +1,6 @@
-# TLCWeb - Transitions Legacy Center Website
+# TLCWeb - Ace Transitions  Website
 
-Peer Mentoring agency website built for Transitions Legacy Center.
+Peer Mentoring agency website built for Ace Transitions .
 
 ## Features
 
@@ -44,9 +44,9 @@ TLCWeb/
 
 ## Contact
 
-For questions about this website, contact Transitions Legacy Center:
+For questions about this website, contact Ace Transitions :
 - Phone: 
-- Email: info@transitionslegacycenter.com
+- Email: info@acetransitions.org
 
 ---
 
