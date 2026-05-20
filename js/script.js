@@ -256,6 +256,77 @@ const imageObserver = new IntersectionObserver((entries, observer) => {
 document.addEventListener('DOMContentLoaded', () => {
     const lazyImages = document.querySelectorAll('img[data-src]');
     lazyImages.forEach(img => imageObserver.observe(img));
+
+    const modal = document.getElementById('infographic-modal');
+    const modalImage = modal?.querySelector('.modal-image');
+    const modalCaption = modal?.querySelector('.modal-caption');
+    const closeButton = modal?.querySelector('.modal-close');
+    const zoomInButton = modal?.querySelector('.zoom-in');
+    const zoomOutButton = modal?.querySelector('.zoom-out');
+
+    let zoomLevel = 1;
+    const minZoom = 1;
+    const maxZoom = 3;
+    const zoomStep = 0.25;
+
+    const updateZoom = (newZoom) => {
+        zoomLevel = Math.min(maxZoom, Math.max(minZoom, newZoom));
+        if (modalImage) {
+            modalImage.style.transform = `scale(${zoomLevel})`;
+            modalImage.classList.toggle('zoomed', zoomLevel > 1);
+        }
+    };
+
+    const resetZoom = () => updateZoom(1);
+
+    document.querySelectorAll('.expandable-flyer').forEach(img => {
+        img.addEventListener('click', () => {
+            if (!modal || !modalImage) return;
+            modalImage.src = img.src;
+            modalImage.alt = img.alt || 'Enlarged infographic';
+            if (modalCaption) {
+                modalCaption.textContent = img.alt || 'Infographic';
+            }
+            resetZoom();
+            modal.classList.add('active');
+            modal.setAttribute('aria-hidden', 'false');
+        });
+    });
+
+    zoomInButton?.addEventListener('click', () => updateZoom(zoomLevel + zoomStep));
+    zoomOutButton?.addEventListener('click', () => updateZoom(zoomLevel - zoomStep));
+
+    modalImage?.addEventListener('wheel', (event) => {
+        event.preventDefault();
+        const direction = event.deltaY > 0 ? -zoomStep : zoomStep;
+        updateZoom(zoomLevel + direction);
+    });
+
+    const closeModal = () => {
+        if (!modal) return;
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        resetZoom();
+    };
+
+    closeButton?.addEventListener('click', closeModal);
+    modal?.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && modal?.classList.contains('active')) {
+            closeModal();
+        }
+        if (event.key === '+' && modal?.classList.contains('active')) {
+            updateZoom(zoomLevel + zoomStep);
+        }
+        if ((event.key === '-' || event.key === '_') && modal?.classList.contains('active')) {
+            updateZoom(zoomLevel - zoomStep);
+        }
+    });
 });
 
 // ===== ACCESSIBILITY IMPROVEMENTS =====
